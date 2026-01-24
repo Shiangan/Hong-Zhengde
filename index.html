@@ -100,25 +100,29 @@
         .date-hero { font-size: 78px; font-weight: 900; line-height: 1; text-align: center; letter-spacing: -3px; color: var(--ink); }
         .date-sub { text-align: center; font-size: 15px; letter-spacing: 3px; color: var(--sub-ink); margin-top: 15px; }
         
+        /* 核心修正：確保時間軸整齊且不跑版 */
         .time-timeline { margin: 50px 0; display: flex; flex-direction: column; align-items: center; gap: 30px; }
-        .time-box { display: flex; align-items: center; gap: 25px; }
-  .time-tag { 
-    font-size: 28px; /* Slightly smaller for better fit */
-    color: var(--gold-dark); 
-    min-width: 120px; /* Increased to accommodate 4-character titles */
-    font-weight: 700; 
-    text-align: right; 
-}
+        .time-box { display: flex; align-items: center; gap: 0; width: 100%; justify-content: center; }
+        .time-tag { 
+            font-size: 26px; 
+            color: var(--gold-dark); 
+            flex: 0 0 130px; /* 固定寬度確保對齊 */
+            font-weight: 700; 
+            text-align: right; 
+            white-space: nowrap; /* 禁止斷行 */
+            padding-right: 25px;
+        }
 
-.time-main { 
-    font-size: 30px; 
-    font-weight: 800; 
-    color: var(--ink); 
-    border-left: 3px solid var(--gold-light); /* Slightly thicker line for better contrast */
-    padding-left: 25px; 
-    line-height: 1.2; /* Better vertical centering with the tag */
-}
-
+        .time-main { 
+            font-size: 26px; 
+            font-weight: 800; 
+            color: var(--ink); 
+            border-left: 2px solid var(--gold-light); 
+            padding-left: 25px; 
+            line-height: 1.2; 
+            flex: 0 0 150px; /* 固定寬度確保對齊 */
+            white-space: nowrap; /* 禁止斷行 */
+        }
 
         .info-card { 
             border-radius: 8px; padding: 35px 25px; margin-bottom: 25px; 
@@ -170,7 +174,6 @@
         #lightbox { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(26,26,26,0.98); display:none; justify-content:center; align-items:center; z-index:10000; padding: 20px; }
         #lightbox img { max-width: 100%; max-height: 92%; object-fit: contain; }
         
-        /* 頁尾置中 */
         footer { width: 100%; padding: 80px 25px 150px; text-align: center; font-size: 22px; font-weight: 700; letter-spacing: 12px; color: var(--gold-dark); opacity: 0.5; }
     </style>
 </head>
@@ -227,8 +230,14 @@
             <div class="date-sub">西元 2026 年 ‧ 國曆二月八日 (星期日)</div>
             
             <div class="time-timeline">
-                <div class="time-box"><span class="time-tag">家奠禮</span><span class="time-main">10:00</span></div>
-                <div class="time-box"><span class="time-tag">學會儀式</span><span class="time-main">隨即舉行</span></div>
+                <div class="time-box">
+                    <span class="time-tag">家奠禮</span>
+                    <span class="time-main">10:00</span>
+                </div>
+                <div class="time-box">
+                    <span class="time-tag">學會儀式</span>
+                    <span class="time-main">隨即舉行</span>
+                </div>
             </div>
             <p style="text-align: center; font-size: 15px; color: var(--gold-dark); margin-top: -20px; margin-bottom: 30px; font-weight: 600;">( 依創價學會宗教儀式舉行 )</p>
 
@@ -246,12 +255,12 @@
                 <div class="info-sub">親友平日可前往上香弔唁</div>
             </div>
 
-          <a href="https://maps.app.goo.gl/4MGUPtbRjuq8vsCs5?g_st=ic" target="_blank" class="btn-action btn-outline">🏠 導航至喪宅 (三重)</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=新北市三重區仁孝街36號" target="_blank" class="btn-action btn-outline">🏠 導航至喪宅 (三重)</a>
             <a href="https://www.google.com/maps/search/?api=1&query=台北市立第二殯儀館" target="_blank" class="btn-action btn-outline">📍 開啟會場導航 (二殯)</a>
             <a href="javascript:void(0)" class="btn-action btn-solid" onclick="addCal()">📅 加入手機行事曆</a>
         </section>
 
-                <section class="reveal">
+        <section class="reveal">
             <span class="section-title">致意資訊導引</span>
             <div class="tool-drawer">
                 <button class="drawer-btn" onclick="toggleD(this, 'flower')"> 致意花禮樣式 <span>+</span></button>
@@ -261,10 +270,10 @@
                         <div class="grid-item" onclick="zoom('image/花籃B款.JPG')"><img src="image/花籃B款.JPG"><p>樣式 B</p><span>NT$ 3,000 / 對</span></div>
                         <div class="grid-item" onclick="zoom('image/花籃C款.JPG')"><img src="image/花籃C款.JPG"><p>樣式 C</p><span>NT$ 3,500 / 對</span></div>
                         <div class="grid-item" onclick="zoom('image/花籃D款.JPG')"><img src="image/花籃D款.JPG"><p>樣式 D</p><span>NT$ 4,500 / 對</span></div>
-                        <div class="grid-item" onclick="zoom('image/花籃E款.JPG')"><img src="image/花籃E款.JPG"><p>樣式 E</p><span>NT$ 5,000 / 對</span></div>
-                        <div class="grid-item" onclick="zoom('image/花籃F款.JPG')"><img src="image/花籃F款.JPG"><p>樣式 F</p><span>NT$ 5,500 / 對</span></div>
-                        <div class="grid-item" onclick="zoom('image/花籃G款.JPG')"><img src="image/花籃G款.JPG"><p>樣式 G</p><span>NT$ 6,000 / 對</span></div>
-                        <div class="grid-item" onclick="zoom('image/花籃H款.JPG')"><img src="image/花籃H款.JPG"><p>樣式 H</p><span>NT$ 6,500 / 對</span></div>
+                        <div class="grid-item" onclick="zoom('image/花籃E款.JPG')"><img src="image/花籃E款.JPG"><p>樣式 D</p><span>NT$ 4,500 / 對</span></div>
+                        <div class="grid-item" onclick="zoom('image/花籃F款.JPG')"><img src="image/花籃F款.JPG"><p>樣式 D</p><span>NT$ 5,500 / 對</span></div>
+                        <div class="grid-item" onclick="zoom('image/花籃G款.JPG')"><img src="image/花籃G款.JPG"><p>樣式 D</p><span>NT$ 6,000 / 對</span></div>
+                        <div class="grid-item" onclick="zoom('image/花籃H款.JPG')"><img src="image/花籃H款.JPG"><p>樣式 D</p><span>NT$ 6,500 / 對</span></div>
                     </div>
                     <div class="contact-box" style="margin-top: 30px; border-top: 1px dashed var(--gold-light);">
                         <span class="info-label">線上訂購花禮</span>
@@ -276,7 +285,6 @@
                     </div>
                 </div>
             </div>
-            
             
             <div class="tool-drawer">
                 <button class="drawer-btn" onclick="toggleD(this, 'map_ref')">會場交通位置圖 <span>+</span></button>
@@ -334,10 +342,10 @@
 
     const FULL_INFO = `【🍀追思告別】洪正德 先生
 
-🕯️ 奠禮日期：西元 2026 年 02 月 08 日 (星期日)
-🕯️ 家奠禮：上午 10:00
-🕯️ 創價學會宗教儀式：隨即舉行
-📍 奠禮地點：台北市立第二殯儀館 [至孝四廳]
+📆 奠禮日期：西元 2026 年 02 月 08 日 (星期日)
+🍀 家奠禮：上午 10:00
+🍀 創價學會宗教儀式：隨即舉行
+📍 奠禮地點：台北市立第二殯儀館
 📝 奠禮禮廳：景行樓 2F [至孝四廳］
 
 🏠 安靈地點：三重區仁孝街 36 號 (喪宅)
